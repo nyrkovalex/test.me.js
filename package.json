@@ -8,7 +8,13 @@
   },
   "author": "Alexander Nyrkov",
   "license": "MIT",
-  "repository": "",
+  "repository": "https://github.com/nyrkovalex/test.me.js",
+  "keywords": [
+    "mock",
+    "require",
+    "test",
+    "dependency injection"
+  ],
   "devDependencies": {
     "chai": "~2.2.0",
     "mocha": "~2.2.4"
