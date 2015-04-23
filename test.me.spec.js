@@ -15,12 +15,13 @@ describe('test.me module loader', function () {
     mockVm = {
       ranWith: {},
       runInNewContext: function (script, context) {
-        ranWith['script'] = script;
-        ranWith['context'] = context;
+        this.ranWith.script = script;
+        this.ranWith.context = context;
       }
     };
     testMe = load('./test.me', {
-      fs: mockFs
+      fs: mockFs,
+      vm: mockVm
     });
   });
 
@@ -70,7 +71,7 @@ describe('test.me module loader', function () {
 
   });
 
-  describe('require mock function', function () {
+  describe('requireMock function', function () {
     var requireMock;
 
     beforeEach(function () {
@@ -94,7 +95,7 @@ describe('test.me module loader', function () {
     });
   });
 
-  describe('create context function', function () {
+  describe('createContext function', function () {
     var createContext;
 
     beforeEach(function () {
@@ -133,6 +134,18 @@ describe('test.me module loader', function () {
 
     it('should be exported', function() {
       expect(loadModule).to.equal(testMe.module.exports);
+    });
+
+    it('should run corect script', function () {
+      testMe.cache['./test.js'] = 'content';
+      loadModule('./test');
+      expect(mockVm.ranWith.script).to.be.equal('content');
+    });
+
+    it('should use mocks provided', function () {
+      var mocks = { foo: 'bar' };
+      loadModule('./test', mocks);
+      expect(mockVm.ranWith.context.require('foo')).to.be.equal('bar');
     });
 
   });

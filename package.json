@@ -4,12 +4,13 @@
   "description": "Simple script for mocking execution context",
   "main": "test.me.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test.me.spec.js"
   },
   "author": "Alexander Nyrkov",
   "license": "MIT",
   "repository": "",
   "devDependencies": {
-    "chai": "~2.2.0"
+    "chai": "~2.2.0",
+    "mocha": "~2.2.4"
   }
 }

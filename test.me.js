@@ -33,7 +33,7 @@ function requireMock(moduleName, relativeTo, mocks) {
 
 function createContext(fileName, mocks, requireFn) {
   var exports = {};
-  var context = {
+  return {
     module: {
       exports: exports
     },
@@ -43,7 +43,6 @@ function createContext(fileName, mocks, requireFn) {
     },
     console: console
   };
-  return context;
 }
 
 function loadModule(fileName, mocks) {
