@@ -89,9 +89,9 @@ describe('test.me module loader', function () {
 
     it('should resolve module path', function () {
       testMe.modulePath = function () {
-        throw 'dead';
+        return 'fs';
       };
-      testMe.requireMock('fs');
+      expect(requireMock('foo', __filename)).to.equal(mockFs);
     });
   });
 

@@ -1,4 +1,4 @@
-# test.me.js
+# test.me.js [![Build Status](https://travis-ci.org/nyrkovalex/test.me.js.svg?branch=master)](https://travis-ci.org/nyrkovalex/test.me.js)
 
 Simple nodejs module loader capable of mocking `require`d dependencies
 
@@ -39,7 +39,7 @@ describe('test.me usage example', function () {
   var myModule = testMe('./myModule', {
     fs: mockFs
   });
-    
+
   it('should read some stuff', function (done) {
     // every top-level function defined in the file is accessible via loaded object
     myModule.readStuff(function (err, stuff) {
