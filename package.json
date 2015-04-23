@@ -1,0 +1,15 @@
+{
+  "name": "test.me",
+  "version": "0.0.1",
+  "description": "Simple script for mocking execution context",
+  "main": "test.me.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alexander Nyrkov",
+  "license": "MIT",
+  "repository": "",
+  "devDependencies": {
+    "chai": "~2.2.0"
+  }
+}
