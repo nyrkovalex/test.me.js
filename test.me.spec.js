@@ -91,7 +91,7 @@ describe('test.me module loader', function () {
       testMe.modulePath = function () {
         return 'fs';
       };
-      expect(requireMock('foo', __filename)).to.equal(mockFs);
+      expect(requireMock('fs', __filename)).to.equal(mockFs);
     });
   });
 
@@ -123,6 +123,13 @@ describe('test.me module loader', function () {
       var context = createContext('foo');
       expect(context.console).to.equal(console);
     });
+
+    it('should set globals', function () {
+      var context = createContext('foo', {}, null, {
+        __dirname: 'test.dir'
+      });
+      expect(context.__dirname).to.equal('test.dir');
+    });
   });
 
   describe('loadModule function', function () {
@@ -148,5 +155,10 @@ describe('test.me module loader', function () {
       expect(mockVm.ranWith.context.require('foo')).to.be.equal('bar');
     });
 
+    it('should globals provided', function () {
+      var globals = { __dirname: 'bar' };
+      loadModule('./test', {}, globals);
+      expect(mockVm.ranWith.context.__dirname).to.be.equal('bar');
+    });
   });
 });

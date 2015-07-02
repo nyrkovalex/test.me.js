@@ -31,24 +31,29 @@ function requireMock(moduleName, relativeTo, mocks) {
   return mocks[moduleName] || require(modulePath(moduleName, relativeTo));
 }
 
-function createContext(fileName, mocks, requireFn) {
-  var exports = {};
-  return {
-    module: {
+function createContext(fileName, mocks, requireFn, globals) {
+  var exports = {}, context = {};
+
+    Object.keys(globals || {}).forEach(function(key) {
+      context[key] = globals[key];
+    });
+
+    context.module = {
       exports: exports
-    },
-    exports: exports,
-    require: function (name) {
+    };
+    context.exports = exports;
+    context.require = function (name) {
       return requireFn(name, fileName, mocks);
-    },
-    console: console
-  };
+    };
+    context.console = console;
+
+    return context;
 }
 
-function loadModule(fileName, mocks) {
+function loadModule(fileName, mocks, globals) {
   var context;
   fileName = appendJs(fileName);
-  context = createContext(fileName, mocks, requireMock);
+  context = createContext(fileName, mocks, requireMock, globals);
   vm.runInNewContext(fromCache(fileName), context);
   return context;
 }
