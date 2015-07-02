@@ -17,7 +17,7 @@ var fs = require('fs');
 
 // Yes, you don't even need to export this in order to test
 function readStuff(cb) {
-  fs.readFile('someStuff', cb);
+  fs.readFile(__dirname + '/someStuff', cb);
 }
 ```
 
@@ -40,6 +40,8 @@ describe('test.me usage example', function () {
   // we load our module with out mock instead of required `fs`
   var myModule = testMe('./myModule', {
     fs: mockFs
+  }, {
+    __dirname: '/my/dir' // will be used as `__dirname` global by your script
   });
 
   it('should read some stuff', function (done) {
