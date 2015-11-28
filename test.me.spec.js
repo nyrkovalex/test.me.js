@@ -1,6 +1,7 @@
 'use strict';
 
 var load = require('./test.me');
+var path = require('path');
 var expect = require('chai').expect;
 
 describe('test.me module loader', function () {
@@ -37,7 +38,7 @@ describe('test.me module loader', function () {
     });
 
     it('should return absolute path', function () {
-      expect(modulePath('./foo', __filename)).to.equal(__dirname + '/foo');
+      expect(modulePath('./foo', __filename)).to.equal(__dirname + path.sep + 'foo');
     });
   });
 
@@ -122,6 +123,14 @@ describe('test.me module loader', function () {
     it('should expose real console', function () {
       var context = createContext('foo');
       expect(context.console).to.equal(console);
+    });
+
+    it('should use provided console implementation', function () {
+      var myConsole = { console: true };
+      var context = createContext('foo', null, null, {
+        console: myConsole
+      });
+      expect(context.console).to.equal(myConsole);
     });
 
     it('should set globals', function () {

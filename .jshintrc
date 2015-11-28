@@ -1,0 +1,6 @@
+{
+	"quotmark": "single",
+	"node": true,
+	"mocha": true,
+	"laxbreak": true
+}

@@ -45,7 +45,7 @@ function createContext(fileName, mocks, requireFn, globals) {
     context.require = function (name) {
       return requireFn(name, fileName, mocks);
     };
-    context.console = console;
+    context.console = context.console || console;
 
     return context;
 }
