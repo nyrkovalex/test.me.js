@@ -1,6 +1,6 @@
 {
   "name": "test.me",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Simple script for mocking execution context",
   "main": "test.me.js",
   "scripts": {
