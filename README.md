@@ -2,6 +2,8 @@
 
 Simple nodejs module loader capable of mocking `require`d dependencies
 
+[![NPM](https://nodei.co/npm/test.me.png)](https://npmjs.org/package/test.me)
+
 [![Build Status](https://travis-ci.org/nyrkovalex/test.me.js.svg?branch=master)](https://travis-ci.org/nyrkovalex/test.me.js)
 
 ## Usage
